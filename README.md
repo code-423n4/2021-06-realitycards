@@ -121,10 +121,9 @@ Reality Cards will be deployed on the layer 2 solution matic/polygon. All matic 
 
 A very high level overview of the system can be read here https://realitycards.io/faq. Please note this refers to the contracts being on xDai which will not be the case when we launch.
 
-## Overview of the contracts
+## :mag: Overview of the contracts
 
 There are a total of six contracts. Four main contracts and two nft contracts that form a bridge between Matic and Eth.
-
 The four primary contracts are:
 
 ### RCMarkets.sol
@@ -143,7 +142,7 @@ E.g. When a user forecloses (when they run out of deposit to continue paying ren
 ### Nft Hubs
 Finally, there are two NFT contracts: RCNftHubL2.sol deployed on Matic and RCNftHubL1.sol deployed on Eth mainnet. When an event is created, the NFTs are minted at RCNftHubL2.sol. While an event is ongoing, only the market contract can transfer ownership. If the final owner of the card chooses they may upgrade their card to the mainet, the card is then burnt at RCNftHubL2.sol and minted again at RCNftHubL1.sol. This is facilitated by the Matic PoS bridge.
 
-## Governance
+## :mortar_board: Governance
 
 There are three types of governance function, separated by the magnitude of what can be achieved.
 
@@ -153,18 +152,18 @@ There are three types of governance function, separated by the magnitude of what
 
 ## Key aspects to the contracts
  
-### Rent collection mechanisms
+### :moneybag: Rent collection mechanisms :moneybag:
 
 There are 2 rent collection mechanisms in use in the contracts. Each uses multiple functions and we refer to them as per-user rent collection and per-card rent collection. The 2 mechanisms work in tandem with per-user rent collection always being called before a per-card rent collection.
 
 These 2 mechanisms are an essential part of allowing users to have one deposit pot that multiple cards (and multiple markets) can withdraw from in a fair manner. 
 
-#### Per-user rent collection
+#### :man: Per-user rent collection
 The per-user rent collection is only interested in the rent as a whole that an individual user owes over a given period of time. There is no concept of separate markets or cards in the per-user rent collection, if there was then it would be too gas intensive to update the rental payments for every card a user could be paying rent for and so it would be required to put limits on the maximum number of bids a user can place.
 
 When the per-user rent collection takes rent from the users deposit it puts the rent into the marketBalance. The marketBalance can be thought of as a shared pot of rent that is due to be paid, but the card it is to be paid on isn’t known at this time. Any market can claim this rent for any card and because we have called for the per-user rent collection before the per-card rent collection there should always be enough in the marketBalance to pay the per-card rent.
 
-#### Per-card rent collection
+#### :black_joker: Per-card rent collection
 This rent collection is only focused on a single card and its owner. It uses the price of the card and the time the owner has held it to calculate how much rent is due. In the simple case this rent collection will be performed because a new user has placed a high enough bid to become the new owner of the card, it is easy enough to collect rent on this card up to the block.timestamp and assign ownership to the new owner. 
 
 However there are cases where the ownership of a card can change without contract interaction and as such per-card rent collection needs to be able to cope with potentially many of these events. They are:
@@ -174,7 +173,7 @@ However there are cases where the ownership of a card can change without contrac
 
 On a per-card rent calculation any combination of these events may be discovered to have happened or not. As the order of these events is also important this leads to many permutations of what can happen within a per-card rent calculation. The most complex of these events is when either a time limit was hit or the market locked. This is because in these cases the per-user rent collection will have collected more rent from the user than was necessary and as such it is required to give the user a partial refund.
 
-### Orderbook bid storage
+### :notebook: Orderbook bid storage
 The orderbook holds all of a given users’ bids in an array of Bid records, each Bid record stores the specifics of the bid (price, time limit, market etc) and the address of the user above and below this bid in the orderbook. There is also an index mapping which stores the position in the users bid array for a given record, this prevents the need to iterate through the array to find a given record (at the expense of storage costs).
 
 When a market is created a zero value Bid record is also created for each card and the market address is used as the owner of this bid. This becomes the head/tail of a doubly linked circular list. In this manner the owner of a card may be located by going to the market Bid record and looking at the address in the next field. By repeatedly looking up the Bid record for the user in the next field the whole orderbook for a given card may be traversed eventually ending back up at the markets’ own bid record.
@@ -190,7 +189,7 @@ E.g. (assume for this scenario that Dai is the smallest unit) Alice owns a parti
 
 In practice the mismatch is very small as we are rounding down to the nearest Wei. The mitigation to this is that the `payRent` function will reduce the rent collected by the per-card rent collection if there isn’t enough in the marketBalance. When this happens we track the discrepancy with marketBalanceDiscrepancy. We have also included the function topupMarketBalance which we will use to pre-seed the marketBalance and can periodically top it up as necessary. Due to rounding being so small, simply seeding with 1 Dai will give decades of extra funds.
 
-### Rent collection gas limit
+### :fuelpump: Rent collection gas limit
 As multiple users could foreclose and/or hit card time limits without user interaction there could exist a lengthy queue of events to process. The current limit is set to 30 rent iterations. This limit has been tested to work but it is very likely it can be increased as this was calculated using the pre-Berlin gas limit and hasn’t been tested on the Matic network where the gas limit is even higher. When this limit is hit the rent calculation stops and the transaction completes, this causes issues in a number of places.
 newRental - If a user places a bid that would make them the owner (or anywhere in the top30 of the orderbook) then there will be some dead time on the card (where a user should have had ownership but wasn’t), this is because we can process the first 30 orders but then we must stop, the 31st user never gets assigned ownership and the new bid will now become the new owner.
 lockMarket - It might be necessary to call the rent collection many times to process all the orders before the market becomes locked.
@@ -203,7 +202,7 @@ Although well tested the oracle contracts are outside our control and the possib
 
 e.g. in a recent market about whether the remains of the long march 5b rocket will hit land or water, there were disputes between international space agencies over if part of the rocket hit the maldives. In this case setAmicableResolution was used as it was generally accepted that this was the answer to the spirit of the question and the Pot size wasn’t sufficient to warrant calling for the arbitrator.
 
-## Protections
+## :closed_lock_with_key: Protections
 
 These are a few of the key protection mechanisms we have put in place for various attacks we have considered.
 

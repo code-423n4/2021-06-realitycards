@@ -28,10 +28,10 @@ Some of the checklists in this doc are for **C4 (🐺)** and some of them are fo
 
 Under "Contest scope information" below, include the following:
 
-- [ ] Name of each contract and:
-  - [ ] lines of code in each
-  - [ ] external contracts called in each
-  - [ ] libraries used in each
+- [x] Name of each contract and:
+  - [x] lines of code in each
+  - [x] external contracts called in each
+  - [x] libraries used in each
 - [ ] Describe any novel or unique curve logic or mathematical models implemented in the contracts
 - [ ] Does the token conform to the ERC-20 standard? In what specific ways does it differ?
 - [ ] Describe anything else that adds any special logic that makes your approach unique
@@ -44,7 +44,41 @@ Under "Contest scope information" below, include the following:
 
 # Contest scope information
 
-[ ⭐️ SPONSORS ADD INFO HERE ]
+### RCFactory.sol  
+ - 633 Lines  
+ - No external calls  
+ - Libraries used:
+   - OpenZeppelin Ownable.sol
+   - OpenZeppelin Clones.sol
+   - NativeMetaTransacion.sol
+
+### RCTreasury.sol  
+ - 760 Lines
+ - External calls to:
+   - ERC20 contracts (likely Dai on matic)
+   - RCBridge.sol (yet to be implemented, outside the scope of this contest)
+ - Libraries used:
+   - OpenZeppelin Ownable.sol
+   - OpenZeppelin SafeCast.sol
+   - OpenZeppelin IERC20.sol
+   - NativeMetaTransacion.sol
+
+### RCMarket.sol  
+ - 1121 Lines
+ - External calls to:
+   - https://reality.eth.link/ Oracle contracts
+ - Libraries used:
+   - OpenZeppelin Initializable.sol
+   - OpenZeppelin SafeCast.sol
+   - NativeMetaTransacion.sol
+
+### RCOrderbook.sol  
+ - 877 Lines
+ - No external calls
+ - Libraries used:
+   - OpenZeppelin Ownable.sol
+   - OpenZeppelin SafeCast.sol
+   - NativeMetaTransacion.sol
 
 ---
 
@@ -60,7 +94,7 @@ Under "Contest scope information" below, include the following:
 - [ ] Delete this checklist.
 
 ## ⭐️ Sponsor: Contest prep
-- [ ] Make sure your code is thoroughly commented using the [NatSpec format](https://docs.soliditylang.org/en/v0.5.10/natspec-format.html#natspec-format).
+- [x] Make sure your code is thoroughly commented using the [NatSpec format](https://docs.soliditylang.org/en/v0.5.10/natspec-format.html#natspec-format).
 - [ ] Modify the bottom of this `README.md` file to describe how your code is supposed to work with links to any relevent documentation and any other criteria/details that the C4 Wardens should keep in mind when reviewing
 - [ ] Please have final versions of contracts and documentation added/updated in this repo **no less than 8 hours prior to contest start time.**
 - [ ] Ensure that you have access to the _findings_ repo where issues will be submitted.

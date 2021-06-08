@@ -133,8 +133,8 @@ Under "Contest scope information" below, include the following:
 
 This repo will be made public before the start of the contest.
 
-Contents
- - [Intro](#introduction)
+##  Contents
+ - [Intro](#bookmark_tabs-introduction)
  - [Overview of the contracts](#mag-overview-of-the-contracts-mag)
    - [RCmarket.sol](#convenience_store-rcmarketsol)
    - [RCFactory.sol](#factory-rcfactorysol)
@@ -146,7 +146,7 @@ Contents
  - [Known Issues](#confused-known-issues-confused)
  - [Protections](#closed_lock_with_key-protections-closed_lock_with_key)
  - [Quick Reference](#quick-reference)
-## Introduction
+## :bookmark_tabs: Introduction
 
 Reality Cards is an NFT based prediction market. Instead of betting on an outcome, each outcome is represented by an NFT, and users compete amongst each other to rent it. Users submit bids to rent each outcome at a given price, and at any time it will be rented by whoever offers the highest rental price. All rent goes into a central pot. At the end of the event, payout is done based on length of ownership; the NFT itself becomes owned by whoever owned it the longest.
 

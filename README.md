@@ -80,6 +80,26 @@ Under "Contest scope information" below, include the following:
    - OpenZeppelin SafeCast.sol
    - NativeMetaTransacion.sol
 
+### RCNftHubL1.sol
+ - 87 Lines
+ - No external calls
+ - Libraries used:
+   - OpenZeppelin ERC721.sol
+   - OpenZeppelin ERC721URIStorage.sol
+   - OpenZeppelin Ownable.sol
+   - OpenZeppelin AccessControl.sol
+   - NativeMetaTransacion.sol
+
+### RCNftHubL2.sol
+ - 239 Lines
+ - No external calls
+ - Libraries used:
+   - OpenZeppelin ERC721.sol
+   - OpenZeppelin ERC721URIStorage.sol
+   - OpenZeppelin Ownable.sol
+   - OpenZeppelin AccessControl.sol
+   - NativeMetaTransacion.sol
+
 ---
 
 # Contest prep

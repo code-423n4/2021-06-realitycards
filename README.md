@@ -141,25 +141,25 @@ Reality Cards will be deployed on the layer 2 solution matic/polygon. All matic 
 
 A very high level overview of the system can be read here https://realitycards.io/faq. Please note this refers to the contracts being on xDai which will not be the case when we launch.
 
-## :mag: Overview of the contracts
+## :mag: Overview of the contracts :mag:
 
 There are a total of six contracts. Four main contracts and two nft contracts that form a bridge between Matic and Eth.
 The four primary contracts are:
 
-### RCMarkets.sol
+### :convenience_store:	 RCMarkets.sol
 This is the market contract. Each event is a unique instance of this contract. The user interacts with this contract when renting Cards. 
 
-### RCFactory.sol
+### :factory:	 RCFactory.sol
 This is the factory contract. This contract deploys the market contracts. A createMarket() function is called in order to create a new market. Clones are used: first, a reference market contract is deployed. Whenever createMarket() is called a clone (proxy) of the reference is created. The proxy is used for the state, but the reference contract is used for the logic. 
 
-### RCTreasury.sol
+### :bank:	RCTreasury.sol
 This contract will hold all the tokens, they are never sent to market contracts. The user interacts with this contract whenever they deposit or withdraw tokens. The main point of this is that users can have a common deposit balance across all Cards on all events. When rent is paid, it does not go anywhere- it is moved from a user’s deposit balance to a market’s marketPot balance (via the marketBalance, explained later), within the Treasury contract. Likewise, claiming any winnings is the opposite. It is essential that all the functions that move funds between these two balances are called only by markets.
 
-### RCOrderbook.sol
+### :notebook_with_decorative_cover:	RCOrderbook.sol
 This contract is where all the users' bids are stored. It also manages the correct placement of bids in the orderbook and locating new card owners. The reason for having a single contract to store all bids across markets is mainly for gas efficiency and to simplify the protections against certain attacks. 
 E.g. When a user forecloses (when they run out of deposit to continue paying rent) then the treasury only needs to inform the orderbook instead of having to keep track of all open markets and inform them all.
 
-### Nft Hubs
+### :sparkles: Nft Hubs
 Finally, there are two NFT contracts: RCNftHubL2.sol deployed on Matic and RCNftHubL1.sol deployed on Eth mainnet. When an event is created, the NFTs are minted at RCNftHubL2.sol. While an event is ongoing, only the market contract can transfer ownership. If the final owner of the card chooses they may upgrade their card to the mainet, the card is then burnt at RCNftHubL2.sol and minted again at RCNftHubL1.sol. This is facilitated by the Matic PoS bridge.
 
 ## :mortar_board: Governance
@@ -170,9 +170,9 @@ There are three types of governance function, separated by the magnitude of what
  - **Owner** - Has full power except to make upgrades. 
  - **uberOwner** - Can ‘upgrade’ the system by deploying new versions of each of the above listed contracts and pointing the other contracts to them. This includes deploying a new reference market contract, from which new clones will be created. It may become necessary to burn the uberOwner to prevent upgrades, thus it is split out from the normal owner. Alternatively we may wish for this to be a multisig but the normal owner to not be, for convenience. 
 
-## Key aspects to the contracts
+## :key:	 Key aspects to the contracts :key:		
  
-### :moneybag: Rent collection mechanisms :moneybag:
+### :moneybag: Rent collection mechanisms 
 
 There are 2 rent collection mechanisms in use in the contracts. Each uses multiple functions and we refer to them as per-user rent collection and per-card rent collection. The 2 mechanisms work in tandem with per-user rent collection always being called before a per-card rent collection.
 
@@ -200,9 +200,9 @@ When a market is created a zero value Bid record is also created for each card a
 
 After a market has completed it might not be possible to delete all the bids in storage so they are placed in a new linked list called the waste pile. The waste pile uses the address of the orderbook contract itself as the owner of the array.
 
-## Known Issues
+## :confused:	 Known Issues :confused:	
 
-### Rent collection rounding mismatch
+### :balance_scale:	Rent collection rounding mismatch
 Situations exist where the per-user rent collection mechanism doesn’t collect enough rent for the per-card rent collection mechanism. This is because when a user owns multiple cards the per-user rent collection can be called for multiple times before a given per-card rent collection is performed. When this happens the per-user rent collection will have rounded down it’s calculation multiple times and the per-card rent collection will only perform the rounding once. 
 
 E.g. (assume for this scenario that Dai is the smallest unit) Alice owns a particular card for 5 Dai/day, After 12 hours if a per-user rent collection is performed it will claim 2 Dai for her, rounded down from 2.5 Dai. Then 12 hours later we perform both rent calculations, the per-user rent calculation will collect another 2 Dai leaving 4 Dai in the marketBalance. However the per-card rent calculation will attempt to collect for the full 24 hours and needs 5 Dai.
@@ -214,15 +214,15 @@ As multiple users could foreclose and/or hit card time limits without user inter
 newRental - If a user places a bid that would make them the owner (or anywhere in the top30 of the orderbook) then there will be some dead time on the card (where a user should have had ownership but wasn’t), this is because we can process the first 30 orders but then we must stop, the 31st user never gets assigned ownership and the new bid will now become the new owner.
 lockMarket - It might be necessary to call the rent collection many times to process all the orders before the market becomes locked.
 
-### Premature user foreclosure
+### :chart_with_downwards_trend: Premature user foreclosure
 Due to the per-user rent collection potentially collecting more rent than necessary which requires giving the user a refund (explained in the per-card rent section) it might happen that a user is foreclosed earlier than they should be. The impact of this is that foreclosed users may have their bids deleted at any time and so a user may unfairly have their bids deleted early. The refundUser function mitigates against this by de-foreclosing the user. It is also expected that the minimum rental period will be reduced following further testing, as the minimum rental period reduces the impact of this will also be reduced.
 
-### Oracle failure
+### :see_no_evil: Oracle failure
 Although well tested the oracle contracts are outside our control and the possibility of failure needs to be planned for. To this end we have a couple of protections. Firstly in the event the oracle returns an invalid answer all users have their rent returned (minus payment for artists and card affiliates), the market creator doesn’t receive payment however because in this case the market question was at fault. There also exists the possibility that although there is an oracle failure or an invalid answer given there is however a generally accepted answer and the owner role may call setAmicableResolution to override the oracle. 
 
 e.g. in a recent market about whether the remains of the long march 5b rocket will hit land or water, there were disputes between international space agencies over if part of the rocket hit the maldives. In this case setAmicableResolution was used as it was generally accepted that this was the answer to the spirit of the question and the Pot size wasn’t sufficient to warrant calling for the arbitrator.
 
-## :closed_lock_with_key: Protections
+## :closed_lock_with_key: Protections :closed_lock_with_key:
 
 These are a few of the key protection mechanisms we have put in place for various attacks we have considered.
 

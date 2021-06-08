@@ -133,6 +133,19 @@ Under "Contest scope information" below, include the following:
 
 This repo will be made public before the start of the contest.
 
+Contents
+ - [Intro](#introduction)
+ - [Overview of the contracts](#mag-overview-of-the-contracts-mag)
+   - [RCmarket.sol](#convenience_store-rcmarketsol)
+   - [RCFactory.sol](#factory-rcfactorysol)
+   - [RCTreasury.sol](#bankrctreasurysol)
+   - [RCOrderbook.sol](#notebook_with_decorative_coverrcorderbooksol)
+   - [Nft Hubs](#sparkles-nft-hubs)
+ - [Governance](#mortar_board-governance-mortar_board)
+ - [Key aspects to the contracts](#key-key-aspects-to-the-contracts-key)
+ - [Known Issues](#confused-known-issues-confused)
+ - [Protections](#closed_lock_with_key-protections-closed_lock_with_key)
+ - [Quick Reference](#quick-reference)
 ## Introduction
 
 Reality Cards is an NFT based prediction market. Instead of betting on an outcome, each outcome is represented by an NFT, and users compete amongst each other to rent it. Users submit bids to rent each outcome at a given price, and at any time it will be rented by whoever offers the highest rental price. All rent goes into a central pot. At the end of the event, payout is done based on length of ownership; the NFT itself becomes owned by whoever owned it the longest.
@@ -146,7 +159,7 @@ A very high level overview of the system can be read here https://realitycards.i
 There are a total of six contracts. Four main contracts and two nft contracts that form a bridge between Matic and Eth.
 The four primary contracts are:
 
-### :convenience_store:	 RCMarkets.sol
+### :convenience_store:	 RCMarket.sol
 This is the market contract. Each event is a unique instance of this contract. The user interacts with this contract when renting Cards. 
 
 ### :factory:	 RCFactory.sol
@@ -162,7 +175,7 @@ E.g. When a user forecloses (when they run out of deposit to continue paying ren
 ### :sparkles: Nft Hubs
 Finally, there are two NFT contracts: RCNftHubL2.sol deployed on Matic and RCNftHubL1.sol deployed on Eth mainnet. When an event is created, the NFTs are minted at RCNftHubL2.sol. While an event is ongoing, only the market contract can transfer ownership. If the final owner of the card chooses they may upgrade their card to the mainet, the card is then burnt at RCNftHubL2.sol and minted again at RCNftHubL1.sol. This is facilitated by the Matic PoS bridge.
 
-## :mortar_board: Governance
+## :mortar_board: Governance :mortar_board:
 
 There are three types of governance function, separated by the magnitude of what can be achieved.
 

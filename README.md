@@ -12,6 +12,17 @@ Some of the checklists in this doc are for **C4 (🐺)** and some of them are fo
 
 ---
 
+# Reality Cards contest details
+- $45,000 USDC main award pot
+- $15,000 USDC worth of Reality Cards tokens
+- Join [C4 Discord](https://discord.gg/EY5dvm3evD) to register
+- Submit findings [using the C4 form](https://code423n4.com/2021-06-realitycards-contest/submit)
+- [Read our guidelines for more details](https://code423n4.com/compete)
+- Starts June 10 00:00 UTC
+- Ends June 16 23:59 UTC
+
+This repo will be made public before the start of the contest.
+
 # Contest scoping
 
 ## ⭐️ Sponsor: Provide contest scoping details
@@ -102,17 +113,6 @@ Under "Contest scope information" below, include the following:
 - [ ] Delete this checklist and all text above the line below when you're ready.
 
 ---
-
-# Reality Cards contest details
-- $45,000 USDC main award pot
-- $15,000 USDC worth of Reality Cards tokens
-- Join [C4 Discord](https://discord.gg/EY5dvm3evD) to register
-- Submit findings [using the C4 form](https://code423n4.com/2021-06-realitycards-contest/submit)
-- [Read our guidelines for more details](https://code423n4.com/compete)
-- Starts June 10 00:00 UTC
-- Ends June 16 23:59 UTC
-
-This repo will be made public before the start of the contest.
 
 ##  Contents
  - [Intro](#bookmark_tabs-introduction)

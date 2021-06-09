@@ -23,25 +23,6 @@ Some of the checklists in this doc are for **C4 (🐺)** and some of them are fo
 
 This repo will be made public before the start of the contest.
 
-# Contest scoping
-
-## ⭐️ Sponsor: Provide contest scoping details
-
-Under "Contest scope information" below, include the following:
-
-- [x] Name of each contract and:
-  - [x] lines of code in each
-  - [x] external contracts called in each
-  - [x] libraries used in each
-- [ ] Describe any novel or unique curve logic or mathematical models implemented in the contracts
-- [ ] Does the token conform to the ERC-20 standard? In what specific ways does it differ?
-- [ ] Describe anything else that adds any special logic that makes your approach unique
-- [ ] Identify any areas of specific concern in reviewing the code
-- [ ] Add all of the code to this repo that you want reviewed
-- [ ] Create a PR to this repo with the above changes.
-- [ ] Delete this checklist and wait for C4 to provide a recommended contest minimum.
-
----
 
 # Contest scope information
 
@@ -108,8 +89,8 @@ Under "Contest scope information" below, include the following:
 ## ⭐️ Sponsor: Contest prep
 - [x] Make sure your code is thoroughly commented using the [NatSpec format](https://docs.soliditylang.org/en/v0.5.10/natspec-format.html#natspec-format).
 - [x] Modify the bottom of this `README.md` file to describe how your code is supposed to work with links to any relevent documentation and any other criteria/details that the C4 Wardens should keep in mind when reviewing
-- [ ] Please have final versions of contracts and documentation added/updated in this repo **no less than 8 hours prior to contest start time.**
-- [ ] Ensure that you have access to the _findings_ repo where issues will be submitted.
+- [x] Please have final versions of contracts and documentation added/updated in this repo **no less than 8 hours prior to contest start time.**
+- [x] Ensure that you have access to the _findings_ repo where issues will be submitted.
 - [ ] Delete this checklist and all text above the line below when you're ready.
 
 ---

@@ -14,16 +14,6 @@ Some of the checklists in this doc are for **C4 (🐺)** and some of them are fo
 
 # Contest scoping
 
-## 🐺 C4: Set up repos
-- [ ] Create a new private repo named `sponsorname` using this repo as a template.
-- [ ] Get GitHub handles from sponsor.
-- [ ] Add sponsor to this private repo with 'maintain' level access.
-- [ ] Send the sponsor contact the url for this repo to follow the instructions below and add contracts here. (Example message below)
-
-> I just sent the invitation to access a private repo we'll use to scope your contest. Once you accept the invite (it should be in your email), the repo will walk you through what we need step-by-step.
-
-- [ ] Delete this checklist and wait for sponsor to complete their scoping checklist.
-
 ## ⭐️ Sponsor: Provide contest scoping details
 
 Under "Contest scope information" below, include the following:
@@ -50,15 +40,6 @@ Under "Contest scope information" below, include the following:
 
 # Contest prep
 
-## 🐺 C4: Contest prep
-- [ ] Rename contest H1 below
-- [ ] Add link to report form in contest details below
-- [ ] Update pot sizes
-- [ ] Fill in start and end times in contest bullets below.
-- [ ] Move any relevant information in "contest scope information" above to the bottom of this readme.
-- [ ] Add matching info to the [code423n4.com public contest data here](https://github.com/code-423n4/code423n4.com/tree/main/data/contests))
-- [ ] Delete this checklist.
-
 ## ⭐️ Sponsor: Contest prep
 - [ ] Make sure your code is thoroughly commented using the [NatSpec format](https://docs.soliditylang.org/en/v0.5.10/natspec-format.html#natspec-format).
 - [ ] Modify the bottom of this `README.md` file to describe how your code is supposed to work with links to any relevent documentation and any other criteria/details that the C4 Wardens should keep in mind when reviewing
@@ -68,14 +49,14 @@ Under "Contest scope information" below, include the following:
 
 ---
 
-# Sponsorname contest details
-- TBD main award pot
-- TBD gas optimization award pot
+# Reality Cards contest details
+- $45,000 USDC main award pot
+- $15,000 USDC worth of Reality Cards tokens
 - Join [C4 Discord](https://discord.gg/EY5dvm3evD) to register
-- Submit findings [using the C4 form](https://c4-TBD.netlify.app/)
+- Submit findings [using the C4 form](https://code423n4.com/2021-06-realitycards-contest/submit)
 - [Read our guidelines for more details](https://code423n4.com/compete)
-- Starts TBD XXX XXX XX 00:00 UTC
-- Ends TBD XXX XXX XX 23:59 UTC
+- Starts June 10 00:00 UTC
+- Ends June 16 23:59 UTC
 
 This repo will be made public before the start of the contest.
 

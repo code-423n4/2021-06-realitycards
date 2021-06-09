@@ -156,23 +156,25 @@ A very high level overview of the system can be read here https://realitycards.i
 
 ## :mag: Overview of the contracts :mag:
 
+[<img src=https://cdn.realitycards.io/images/YouTubeLink.png>](https://youtu.be/kI_AJb6j7W8)
+
 There are a total of six contracts. Four main contracts and two nft contracts that form a bridge between Matic and Eth.
 The four primary contracts are:
 
-### :convenience_store:	 RCMarket.sol
+### :convenience_store:	 RCMarket.sol [<img src="https://cdn.realitycards.io/images/yt.png" width=20>](https://youtu.be/kI_AJb6j7W8?t=1)
 This is the market contract. Each event is a unique instance of this contract. The user interacts with this contract when renting Cards. 
 
-### :factory:	 RCFactory.sol
+### :factory:	 RCFactory.sol [<img src="https://cdn.realitycards.io/images/yt.png" width=20>](https://youtu.be/kI_AJb6j7W8?t=27)
 This is the factory contract. This contract deploys the market contracts. A createMarket() function is called in order to create a new market. Clones are used: first, a reference market contract is deployed. Whenever createMarket() is called a clone (proxy) of the reference is created. The proxy is used for the state, but the reference contract is used for the logic. 
 
-### :bank:	RCTreasury.sol
+### :bank:	RCTreasury.sol [<img src="https://cdn.realitycards.io/images/yt.png" width=20>](https://youtu.be/kI_AJb6j7W8?t=61)
 This contract will hold all the tokens, they are never sent to market contracts. The user interacts with this contract whenever they deposit or withdraw tokens. The main point of this is that users can have a common deposit balance across all Cards on all events. When rent is paid, it does not go anywhere- it is moved from a user’s deposit balance to a market’s marketPot balance (via the marketBalance, explained later), within the Treasury contract. Likewise, claiming any winnings is the opposite. It is essential that all the functions that move funds between these two balances are called only by markets.
 
-### :notebook_with_decorative_cover:	RCOrderbook.sol
+### :notebook_with_decorative_cover:	RCOrderbook.sol [<img src="https://cdn.realitycards.io/images/yt.png" width=20>](https://youtu.be/kI_AJb6j7W8?t=111)
 This contract is where all the users' bids are stored. It also manages the correct placement of bids in the orderbook and locating new card owners. The reason for having a single contract to store all bids across markets is mainly for gas efficiency and to simplify the protections against certain attacks. 
 E.g. When a user forecloses (when they run out of deposit to continue paying rent) then the treasury only needs to inform the orderbook instead of having to keep track of all open markets and inform them all.
 
-### :sparkles: Nft Hubs
+### :sparkles: Nft Hubs [<img src="https://cdn.realitycards.io/images/yt.png" width=20>](https://youtu.be/kI_AJb6j7W8?t=175)
 Finally, there are two NFT contracts: RCNftHubL2.sol deployed on Matic and RCNftHubL1.sol deployed on Eth mainnet. When an event is created, the NFTs are minted at RCNftHubL2.sol. While an event is ongoing, only the market contract can transfer ownership. If the final owner of the card chooses they may upgrade their card to the mainet, the card is then burnt at RCNftHubL2.sol and minted again at RCNftHubL1.sol. This is facilitated by the Matic PoS bridge.
 
 ## :mortar_board: Governance :mortar_board:

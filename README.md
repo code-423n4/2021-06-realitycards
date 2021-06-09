@@ -1,17 +1,3 @@
-# ✨ So you want to sponsor a contest
-
-This `README.md` contains a set of checklists for our contest collaboration.
-
-Your contest will use two repos: 
-- **a _contest_ repo** (this one), which is used for scoping your contest and for providing information to contestants (wardens)
-- **a _findings_ repo**, where issues are submitted. (We'll set that one up later.) 
-
-Ultimately, when we launch the contest, this contest repo will be made public and will contain the smart contracts to be reviewed and all the information needed for contest participants. The findings repo will be made public after the contest is over and your team has mitigated the identified issues.
-
-Some of the checklists in this doc are for **C4 (🐺)** and some of them are for **you as the contest sponsor (⭐️)**.
-
----
-
 # Reality Cards contest details
 - $45,000 USDC main award pot
 - $15,000 USDC worth of Reality Cards tokens
@@ -21,79 +7,6 @@ Some of the checklists in this doc are for **C4 (🐺)** and some of them are fo
 - Starts June 10 00:00 UTC
 - Ends June 16 23:59 UTC
 
-This repo will be made public before the start of the contest.
-
-
-# Contest scope information
-
-### RCFactory.sol  
- - 633 Lines  
- - No external calls  
- - Libraries used:
-   - OpenZeppelin Ownable.sol
-   - OpenZeppelin Clones.sol
-   - NativeMetaTransacion.sol
-
-### RCTreasury.sol  
- - 760 Lines
- - External calls to:
-   - ERC20 contracts (likely Dai on matic)
-   - RCBridge.sol (yet to be implemented, outside the scope of this contest)
- - Libraries used:
-   - OpenZeppelin Ownable.sol
-   - OpenZeppelin SafeCast.sol
-   - OpenZeppelin IERC20.sol
-   - NativeMetaTransacion.sol
-
-### RCMarket.sol  
- - 1121 Lines
- - External calls to:
-   - https://reality.eth.link/ Oracle contracts
- - Libraries used:
-   - OpenZeppelin Initializable.sol
-   - OpenZeppelin SafeCast.sol
-   - NativeMetaTransacion.sol
-
-### RCOrderbook.sol  
- - 877 Lines
- - No external calls
- - Libraries used:
-   - OpenZeppelin Ownable.sol
-   - OpenZeppelin SafeCast.sol
-   - NativeMetaTransacion.sol
-
-### RCNftHubL1.sol
- - 87 Lines
- - No external calls
- - Libraries used:
-   - OpenZeppelin ERC721.sol
-   - OpenZeppelin ERC721URIStorage.sol
-   - OpenZeppelin Ownable.sol
-   - OpenZeppelin AccessControl.sol
-   - NativeMetaTransacion.sol
-
-### RCNftHubL2.sol
- - 239 Lines
- - No external calls
- - Libraries used:
-   - OpenZeppelin ERC721.sol
-   - OpenZeppelin ERC721URIStorage.sol
-   - OpenZeppelin Ownable.sol
-   - OpenZeppelin AccessControl.sol
-   - NativeMetaTransacion.sol
-
----
-
-# Contest prep
-
-## ⭐️ Sponsor: Contest prep
-- [x] Make sure your code is thoroughly commented using the [NatSpec format](https://docs.soliditylang.org/en/v0.5.10/natspec-format.html#natspec-format).
-- [x] Modify the bottom of this `README.md` file to describe how your code is supposed to work with links to any relevent documentation and any other criteria/details that the C4 Wardens should keep in mind when reviewing
-- [x] Please have final versions of contracts and documentation added/updated in this repo **no less than 8 hours prior to contest start time.**
-- [x] Ensure that you have access to the _findings_ repo where issues will be submitted.
-- [ ] Delete this checklist and all text above the line below when you're ready.
-
----
 
 ##  Contents
  - [Intro](#bookmark_tabs-introduction)
@@ -108,6 +21,7 @@ This repo will be made public before the start of the contest.
  - [Known Issues](#confused-known-issues-confused)
  - [Protections](#closed_lock_with_key-protections-closed_lock_with_key)
  - [Quick Reference](#quick-reference)
+ - [Contest Scope](#contest-scope)
 ## :bookmark_tabs: Introduction
 
 Reality Cards is an NFT based prediction market. Instead of betting on an outcome, each outcome is represented by an NFT, and users compete amongst each other to rent it. Users submit bids to rent each outcome at a given price, and at any time it will be rented by whoever offers the highest rental price. All rent goes into a central pot. At the end of the event, payout is done based on length of ownership; the NFT itself becomes owned by whoever owned it the longest.
@@ -240,3 +154,63 @@ The above, and various other considerations, are detailed here Reality Cards Ord
 **Underbidding** - The act of placing a bid lower than the current highest bid. Usually because it is expected the current owner will run out of funds and ownership will pass down the orderbook.
 
 **Winner takes all mode** - An optional mode selected on market creation where the payout is modified such that the longest owner of the winning card takes the entire pot.
+
+---
+
+## Contest scope
+
+### RCFactory.sol  
+ - 633 Lines  
+ - No external calls  
+ - Libraries used:
+   - OpenZeppelin Ownable.sol
+   - OpenZeppelin Clones.sol
+   - NativeMetaTransacion.sol
+
+### RCTreasury.sol  
+ - 760 Lines
+ - External calls to:
+   - ERC20 contracts (likely Dai on matic)
+   - RCBridge.sol (yet to be implemented, outside the scope of this contest)
+ - Libraries used:
+   - OpenZeppelin Ownable.sol
+   - OpenZeppelin SafeCast.sol
+   - OpenZeppelin IERC20.sol
+   - NativeMetaTransacion.sol
+
+### RCMarket.sol  
+ - 1121 Lines
+ - External calls to:
+   - https://reality.eth.link/ Oracle contracts
+ - Libraries used:
+   - OpenZeppelin Initializable.sol
+   - OpenZeppelin SafeCast.sol
+   - NativeMetaTransacion.sol
+
+### RCOrderbook.sol  
+ - 877 Lines
+ - No external calls
+ - Libraries used:
+   - OpenZeppelin Ownable.sol
+   - OpenZeppelin SafeCast.sol
+   - NativeMetaTransacion.sol
+
+### RCNftHubL1.sol
+ - 87 Lines
+ - No external calls
+ - Libraries used:
+   - OpenZeppelin ERC721.sol
+   - OpenZeppelin ERC721URIStorage.sol
+   - OpenZeppelin Ownable.sol
+   - OpenZeppelin AccessControl.sol
+   - NativeMetaTransacion.sol
+
+### RCNftHubL2.sol
+ - 239 Lines
+ - No external calls
+ - Libraries used:
+   - OpenZeppelin ERC721.sol
+   - OpenZeppelin ERC721URIStorage.sol
+   - OpenZeppelin Ownable.sol
+   - OpenZeppelin AccessControl.sol
+   - NativeMetaTransacion.sol

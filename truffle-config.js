@@ -81,7 +81,7 @@ module.exports = {
     },
     xdai: {
       provider: function () {
-        return new HDWalletProvider(MNEMONIC, "http://rpc.xdaichain.com");
+        return new HDWalletProvider(MNEMONIC, "https://rpc.gnosischain.com");
       },
       network_id: 100,
       gas: 12000000,
@@ -105,7 +105,7 @@ module.exports = {
     },
     // stage1: {
     //   provider: function () {
-    //     return new HDWalletProvider(MNEMONIC, "http://rpc.xdaichain.com");
+    //     return new HDWalletProvider(MNEMONIC, "https://rpc.gnosischain.com");
     //   },
     //   network_id: 100,
     //   gas: 12000000,
@@ -125,7 +125,7 @@ module.exports = {
     // },
     // stage3: {
     //   provider: function () {
-    //     return new HDWalletProvider(MNEMONIC, "http://rpc.xdaichain.com");
+    //     return new HDWalletProvider(MNEMONIC, "https://rpc.gnosischain.com");
     //   },
     //   network_id: 100,
     //   gas: 12000000,
